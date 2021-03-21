@@ -3,23 +3,27 @@
 index page
 @endsection
 @section('content')
-<form method="PUT" action="{{route('posts.update',['post' => $post['id']])}}" >
+<form method="POST" action="{{route('posts.update',['post' => $post['id']])}}" >
 @csrf
+@method('PUT')
 <div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label"> Title</label>
-  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="{{ $post['title'] }}">
+  <input name="title" value="{{$post->title}}"  type="text" class="form-control" id="exampleFormControlInput1">
 </div>
 <div class="mb-3">
   <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="{{ $post['title']}}"></textarea>
+  <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3">{{$post->description}}</textarea>
 </div>
 <div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Post Creator</label>
-  <select class="form-control" id="post_creator">
-          <option>sara</option>
+  <select name="user_id"  class="form-control" id="post_creator">
+  @foreach($users as $user)
+          <option value="{{$user->id}}">{{$user->name}}</option>
+     @endforeach     
+          <!-- <option value="{{$post->user_id}}">{{$post->user->name}}</option> -->
 </select>
 </div>
-<button type="submit" class="btn btn-primary">UPdate</button>
+<button  type="submit" class="btn btn-primary">UPdate</button>
 </form>
 
 

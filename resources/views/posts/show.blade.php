@@ -8,9 +8,9 @@ show page
     Post Info
   </div>
   <div class="card-body">
-  <p class="card-text"><b>Title :- </b>{{ $post['title'] }}</p>
+  <p class="card-text"><b>Title :- </b>{{ $post->title }}</p>
      <h5 class="card-title">Description:</h5>
-      <p class="card-text">{{ $post['description'] }}</p>
+      <p class="card-text">{{ $post->description}}</p>
       
       
     
@@ -22,9 +22,9 @@ show page
     Post Creator Info
   </div>
   <div class="card-body">
-    <p class="card-text"><b>Name :- </b>{{ $post['posted_by'] }}</p>
-    <p class="card-text"><b>Email :- </b>{{ $post['email'] }}</p>
-    <p class="card-text"><b>Created At :- </b>{{ $post['created_at'] }}</p>
+    <p class="card-text"><b>Name :- </b>{{ $post->user ? $post->user->name : 'user not found' }}</p>
+    <p class="card-text"><b>Email :- </b>{{ $post->user ? $post->user->email : 'user not found' }}</p>
+    <p class="card-text"><b>Created At :- </b>{{ $post->created_at->format('Y-m-d') }}</p>
     
   </div>
 </div>
