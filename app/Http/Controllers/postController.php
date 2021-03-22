@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 
 
 
@@ -33,7 +35,7 @@ class postController extends Controller
         $post = Post::find($post) ;
         return view('posts.edit',['post'=>$post,'users'=>User::all()]);
     }
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
         $allRequest=$request->all();
         Post::create($allRequest);
@@ -41,8 +43,9 @@ class postController extends Controller
     }
     
 
-    public function update (Request $request ,$postId)
+    public function update (UpdatePostRequest $request ,$postId)
 {   
+    
     $post = Post::findorfail($postId);
     $post->update([
         'title'=>$request['title'],
