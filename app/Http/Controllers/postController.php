@@ -67,6 +67,4 @@ return redirect()->route('posts.index');
 
 }
 
-
-
 }
